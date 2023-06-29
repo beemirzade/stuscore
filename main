@@ -1,0 +1,59 @@
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+    
+    def display_info(self):
+        print(f'Student Name: {self.name}')
+        print(f'Grade: {self.grade}')
+
+class Gradebook:
+    def __init__(self):
+        self.students = []
+    
+    def add_student(self, name, grade):
+        student = Student(name, grade)
+        self.students.append(student)
+        print(f'Student "{name}" added.')
+    
+    def remove_student(self, name):
+        for student in self.students:
+            if student.name == name:
+                self.students.remove(student)
+                print(f'Student "{name}" removed.')
+                return
+        
+        print(f'Student "{name}" not found.')
+    
+    def display_grades(self):
+        if self.students:
+            print('Gradebook:')
+            for student in self.students:
+                student.display_info()
+        else:
+            print('No students found in the gradebook.')
+    
+gradebook = Gradebook()
+
+while True:
+    print('\nGrade Management System')
+    print('1. Add student')
+    print('2. Remove student')
+    print('3. Display grades')
+    print('4. Exit')
+
+    choice = input('Select an option: ')
+
+    if choice == '1':
+        name = input('Enter the student name: ')
+        grade = input('Enter the student grade: ')
+        gradebook.add_student(name, grade)
+    elif choice == '2':
+        name = input('Enter the student name to remove: ')
+        gradebook.remove_student(name)
+    elif choice == '3':
+        gradebook.display_grades()
+    elif choice == '4':
+        break
+    else:
+        print('Invalid choice. Please try again.')
